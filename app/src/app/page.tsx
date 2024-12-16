@@ -7,6 +7,7 @@ import Rooms from '../components/Rooms'
 import Furnitor from '../components/Furnitor'
 
 
+
 export default function Home() {
   return (
     <div>
@@ -21,6 +22,7 @@ export default function Home() {
       <Product/>
       <Rooms/>
       <Furnitor/>
+     
       
     
       </div>

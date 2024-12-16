@@ -14,6 +14,7 @@ const products = [
     imageSrc: "/image 1.png",
     price: "Rp 2.500.000",
     oldPrice: "Rp 3.500.000",
+    link: "./Singleproduct"
   },
   {
     id: 2,
@@ -22,6 +23,7 @@ const products = [
     imageSrc: "/image 3 (1).png",
     price: "Rp 3.000.000",
     oldPrice: "Rp 4.000.000",
+    link: "./Singleproduct"
   },
   {
     id: 3,
@@ -30,6 +32,7 @@ const products = [
     imageSrc: "/images.png",
     price: "Rp 1.800.000",
     oldPrice: "Rp 2.500.000",
+    link: "./Singleproduct"
   },
   {
     id: 4,
@@ -38,6 +41,7 @@ const products = [
     imageSrc: "/image 3 (1).png",
     price: "Rp 2.200.000",
     oldPrice: "Rp 3.000.000",
+    link: "./Singleproduct"
   },
   {
     id: 5,
@@ -46,6 +50,7 @@ const products = [
     imageSrc: "/image 1.png",
     price: "Rp 2.500.000",
     oldPrice: "Rp 3.500.000",
+    link: "./Singleproduct"
   },
   {
     id: 6,
@@ -54,6 +59,7 @@ const products = [
     imageSrc: "/image 2.png",
     price: "Rp 3.000.000",
     oldPrice: "Rp 4.000.000",
+    link: "./Singleproduct"
   },
   {
     id: 7,
@@ -62,6 +68,7 @@ const products = [
     imageSrc: "/image 3 (1).png",
     price: "Rp 1.800.000",
     oldPrice: "Rp 2.500.000",
+    link: "./Singleproduct"
   },
   {
     id: 8,
@@ -70,6 +77,7 @@ const products = [
     imageSrc: "/images.png",
     price: "Rp 2.200.000",
     oldPrice: "Rp 3.000.000",
+    link: "./Singleproduct"
   },
 
   {
@@ -79,6 +87,7 @@ const products = [
     imageSrc: "/image 1.png",
     price: "Rp 2.500.000",
     oldPrice: "Rp 3.500.000",
+    link: "./Singleproduct"
   },
   {
     id: 10,
@@ -87,6 +96,7 @@ const products = [
     imageSrc: "/image 2.png",
     price: "Rp 3.000.000",
     oldPrice: "Rp 4.000.000",
+    link: "./Singleproduct"
   },
   {
     id: 11,
@@ -95,6 +105,7 @@ const products = [
     imageSrc: "/image 3 (1).png",
     price: "Rp 1.800.000",
     oldPrice: "Rp 2.500.000",
+    link: "./Singleproduct"
   },
   {
     id: 12,
@@ -103,6 +114,7 @@ const products = [
     imageSrc: "/images.png",
     price: "Rp 2.200.000",
     oldPrice: "Rp 3.000.000",
+    link: "./Singleproduct"
   },
   
   
@@ -133,12 +145,12 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link href="/blog" className="hover:text-gray-800">
+            <Link href="./Blog" className="hover:text-gray-800">
               Blog
             </Link>
           </li>
           <li>
-            <Link href="/contact" className="hover:text-gray-800">
+            <Link href="./Contact" className="hover:text-gray-800">
               Contact
             </Link>
           </li>
@@ -149,7 +161,7 @@ const Navbar = () => {
           <FaUserAlt className="cursor-pointer" aria-label="User Profile" />
           <IoSearch className="cursor-pointer" aria-label="Search" />
           <FaRegHeart className="cursor-pointer" aria-label="Wishlist" />
-          <Link href='./Card'><BsCart3 className="cursor-pointer" aria-label="Cart" /></Link>
+          <Link href='./Cart'><BsCart3 className="cursor-pointer" aria-label="Cart" /></Link>
         </div>
       </nav>
 
@@ -187,59 +199,75 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 relative top-28 ">
-          {products.map((product) => (
-            <div
-              key={product.id}
-              className="border p-4 rounded-md shadow-sm hover:shadow-md"
-            >
-              <Image
-                src={product.imageSrc}
-                alt={product.name}
-                width={300}
-                height={100}
-                className="rounded-md relative left-4"
-              />
-              <h3 className="text-lg font-bold mt-2">{product.name}</h3>
-              <p className="text-sm text-gray-600">{product.description}</p>
-              <div className="flex justify-between items-center mt-2">
-                <span className="text-gray-400 font-bold">
-                  {product.price}
-                </span>
-                <span className=" text-gray-400">
-                  {product.oldPrice}
-                </span>
-              </div>
+
+    <div className="w-full flex flex-col items-center py-8">
+      <div className="flex flex-wrap justify-center gap-6 w-[80%]">
+        {products.map((product) => (
+          <div
+            key={product.id}
+            className="w-[290px] h-[430px] bg-slate-100 flex flex-col items-center p-4 rounded-lg shadow-md relative group"
+          >
+            {/* Wrap Image component inside Link */}
+            <Link href={product.link}>
+             
+                <Image
+                  src={product.imageSrc}
+                  alt={product.name}
+                  width={1000}
+                  height={500}
+                  className="mb-4 object-cover rounded-lg cursor-pointer"
+                  layout="responsive"
+                />
+           
+            </Link>
+
+            {/* Product Name and Description */}
+            <h3 className="text-[18px] font-bold mb-2 mr-[170px]">{product.name}</h3>
+            <p className="text-[14px] text-gray-700 mb-5 mr-[150px]">{product.description}</p>
+
+            {/* Price and Old Price */}
+            <div className="text-center">
+              <span className="text-[16px] font-bold text-black mr-[140px] ">{product.price}</span>{' '}
+              <span className="text-[14px] text-gray-400 top-32">{product.oldPrice}</span>
             </div>
-            
-          ))}
+
+            {/* Hover Effect: Button */}
+            <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity">
+              <Link href={product.link}>
+                <div className="text-black px-4 py-2 bg-white border-4 border-yellow-600 rounded-lg">Add To Card</div>
+              </Link>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
           <Image src='/Frame 72.png' alt='img' width={300} height={300} className='relative ml-[600px] items-center' />
 
 
 
-          {/* Filters and Product Section */}
-      <div className="bg-[#F9F1E7] py-6 px-4 relative top-[58px] w-[1620px] h-[100px] right-[500px] m-11" >
-        <div className="flex justify-between items-center mb-6">
-          <button className="flex items-center gap-2 text-black font-bold">
-            <Image src="/Group.png" alt="Filter" width={20} height={20} className="relative ml-[300px]"/>
-            High Quality<br></br><span className="text-[10px] text-gray-400 relative top-8 right-32">crafted from top materials</span>
-          </button>
-          <Image src="/Group (1).png" alt="Show" width={30} height={30} className="relative right-20" />
-          <p className="text-sm font-bold relative right-56 top-4 ml-7">Warranty Protection<br></br><span className="text-[10px] text-gray-400 relative left-2">crafted from top materials</span></p>
-          <Image src="/Vector (6).png" alt="Show" width={30} height={30} className="relative right-28" />
-         
-          <div className="flex items-center gap-4">
-            <span className="text-sm font-bold relative right-52">Free Shipping<br></br><span className="text-[10px] text-gray-400 relative right-2">Order over 150 $</span></span>
-            <Image src="/Vector (7).png" alt="Show" width={30} height={30} className="relative right-28" />
-            <span className="text-sm font-bold relative right-[100px]">24 / 7 Support<br></br><span className="text-[10px] text-gray-400 relative right-2">Dedicated support</span></span>
-          
-          </div>
-        </div>
-        </div>
+         {/* Filters and Product Section */}
+                <div className="bg-[#F9F1E7] py-6 px-4 relative  w-[1600px] h-[200px] right-[90px] m-11 top-[170px] " >
+                  <div className="flex justify-between items-center mb-6">
+                    <button className="flex items-center gap-2 text-black font-bold">
+                      <Image src="/Group.png" alt="Filter" width={40} height={30} className="relative ml-[100px] top-8"/>
+                     <span className="relative top-8 ml-4 text-[20px]">High Quality</span><br></br><span className="text-[12px] text-gray-400 relative top-14 right-[140px]">crafted from top materials</span>
+                    </button>
+                    <Image src="/Group (1).png" alt="Show" width={40} height={40} className="relative right-[20px] top-8" />
+                    <span className=" font-bold relative right-[80px]  ml-9 text-[20px] top-7">Warranty Protection</span><br></br><span className="text-[12px] text-gray-400 relative right-[360px] top-14">crafted from top materials</span>
+                    <Image src="/Vector (6).png" alt="Show" width={40} height={40} className="relative right-[170px] top-8" />
+                   
+                    <div className="flex items-center gap-4">
+                      <span className="font-bold relative right-[200px] text-[20px] top-7">Free Shipping</span><br></br><span className="text-[12px] text-gray-400 relative right-[350px] top-14">Order over 150 $</span>
+                      <Image src="/Vector (7).png" alt="Show" width={40} height={40} className="relative right-[170px] top-8" />
+                      <span className="font-bold relative right-[170px] text-[20px] top-10">24 / 7 Support<br></br><span className= 'text-[12px] text-gray-400 relative left-[20px] bottom-1'>Dedicated support</span></span>
+                    
+                    </div>
+                  </div>
+                  </div>
         </div>
       </div>
-    </div>
+    
   );
 };
 

@@ -26,8 +26,8 @@ const Navbar = () => {
           <ul className="flex gap-24 text-gray-500 text-sm ">
             <Link href="/"><li className="cursor-pointer">Home</li></Link>
             <Link href="./Shop"><li className="cursor-pointer">Shop</li></Link>
-            <Link href="./blog"><li className="cursor-pointer">Blog</li></Link>
-            <Link href="./contact"><li className="cursor-pointer">Contact</li></Link>
+            <Link href="./Blog"><li className="cursor-pointer">Blog</li></Link>
+            <Link href="./Contact"><li className="cursor-pointer">Contact</li></Link>
           </ul>
 
           {/* Icons */}
@@ -35,7 +35,7 @@ const Navbar = () => {
             <FaUserAlt className="cursor-pointer" />
             <IoSearch className="cursor-pointer" />
             <FaRegHeart className="cursor-pointer" />
-            <Link href='./Card'><BsCart3 className="cursor-pointer" /></Link>
+            <Link href='./Cart'><BsCart3 className="cursor-pointer" /></Link>
           </div>
         </div>
 
