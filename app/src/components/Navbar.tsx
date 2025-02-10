@@ -14,7 +14,7 @@ const Navbar = () => {
       <Image src="/home.png" alt="Home background" width={1590} height={1008} priority />
     
       {/* Navbar Section */}
-      <div className="relative bottom-[780px]">
+      <div className="relative bottom-[680px]">
         <div className="bg-white container mx-auto w-full h-16 flex items-center justify-between px-6">
           {/* Logo Section */}
           <div className="flex items-center">
@@ -25,7 +25,7 @@ const Navbar = () => {
           {/* Navigation Links */}
           <ul className="flex gap-24 text-gray-500 text-sm ">
             <Link href="/"><li className="cursor-pointer">Home</li></Link>
-            <Link href="./Shop"><li className="cursor-pointer">Shop</li></Link>
+            <Link href="./Product"><li className="cursor-pointer">Product</li></Link>
             <Link href="./Blog"><li className="cursor-pointer">Blog</li></Link>
             <Link href="./Contact"><li className="cursor-pointer">Contact</li></Link>
           </ul>
