@@ -1,93 +1,97 @@
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+'use client';
 
-const products = [
- 
- 
-  {
-    id: 1,
-    name: 'Syltherine',
-    description: 'Stylish cafe chair',
-    imageSrc: '/image 1.png',
-    price: 'Rp 2.500.000',
-    oldPrice: 'Rp 3.500.000',
-    link: "./Singleproduct"
-  },
-  
-  {
-    id: 2,
-    name: 'Leviosa',
-    description: 'Comfortable armchair',
-    imageSrc: '/image 1.png',
-    price: 'Rp 3.000.000',
-    oldPrice: 'Rp 4.000.000',
-    link: "./Singleproduct"
-  },
-  {
-    id: 3,
-    name: 'Potter',
-    description: 'Classic wooden chair',
-    imageSrc: '/image 3.png',
-    price: 'Rp 1.800.000',
-    oldPrice: 'Rp 2.500.000',
-    link: "./Singleproduct"
-  },
-  {
-    id: 4,
-    name: 'Griffin',
-    description: 'Elegant dining chair',
-    imageSrc: '/images.png',
-    price: 'Rp 2.200.000',
-    oldPrice: 'Rp 3.000.000',
-    link: "./Singleproduct"
-  },
-];
+import { useState, useEffect } from "react";
+import { client } from "@/sanity/lib/client";
+import Image from "next/image";
+import Link from "next/link";
 
-const OurProduct = () => {
+
+interface Products {
+  slug: { current: string };
+  _id: string;
+  title: string;
+  price: number;
+  description: string;
+  discountPercentage: number;
+  imageUrl: string;
+  tags: string[];
+}
+
+// Function to manually generate Sanity image URL
+
+const OurProduct: React.FC = () => {
+  const [filteredProducts, setFilteredProducts] = useState<Products[]>([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const products = await client.fetch(`
+          *[_type == "product" && Ourproduct == true]{
+            _id,
+            title,
+            price,
+          "imageUrl": productImage.asset->url, 
+            slug,
+            tags
+          }[0..7]
+        `);
+
+        if (products.length > 0) {
+          setFilteredProducts(products);
+        }
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  // Handle add to cart
+
   return (
-    <div className="w-full flex flex-col items-center py-8">
-      <div className="flex flex-wrap justify-center gap-6 w-[90%]">
-        {products.map((product) => (
-          <div
-            key={product.id}
-            className="w-[290px] h-[430px] bg-slate-100 flex flex-col items-center p-4 rounded-lg shadow-md relative group"
-          >
-            {/* Wrap Image component inside Link */}
-            <Link href={product.link}>
-             
+    <div className="w-full flex flex-col items-center px-4 sm:px-6 lg:px-10 bottom-[700px] relative">
+      <h1 className="text-[30px] sm:text-[40px] md:text-[40px] font-bold text-center mb-8">
+        Our Products
+      </h1>
+     
+      {/* Product Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map((product) => (
+            <div
+              key={product._id}
+              className="bg-white shadow-md rounded-lg p-4 hover:shadow-lg transition-shadow duration-300"
+            >
+              <Link href={product.slug?.current ? `/Products/${product.slug.current}` : "#"}>
                 <Image
-                  src={product.imageSrc}
-                  alt={product.name}
-                  width={1200}
+                    src={product.imageUrl || "https://via.placeholder.com/300"}
+                  alt={product.title}
+                  width={500}
                   height={500}
-                  className="mb-4 object-cover rounded-lg cursor-pointer"
-                  layout="responsive"
+                  className="w-full h-48 object-cover rounded-md"
                 />
-           
-            </Link>
-
-            {/* Product Name and Description */}
-            <h3 className="text-[18px] font-bold mb-2 mr-[170px]">{product.name}</h3>
-            <p className="text-[14px] text-gray-700 mb-5 mr-[150px]">{product.description}</p>
-
-            {/* Price and Old Price */}
-            <div className="text-center">
-              <span className="text-[16px] font-bold text-black mr-[140px] ">{product.price}</span>{' '}
-              <span className="text-[14px] text-gray-400 top-32">{product.oldPrice}</span>
-            </div>
-
-            {/* Hover Effect: Button */}
-            <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity">
-              <Link href={product.link}>
-                <div className="text-black px-4 py-2 bg-white border-4 border-yellow-600 rounded-lg">Add To Card</div>
               </Link>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
 
+              {/* Product Title */}
+              <h2 className="mt-4 text-lg font-semibold">{product.title}</h2>
+
+              {/* Product Price */}
+              <p className="text-gray-700 font-medium">${product.price}</p>
+
+              
+            </div>
+          ))
+        ) : (
+          <div className="col-span-full text-center text-gray-500">
+            No products found matching your search.
+          </div>
+        )}
+      </div>
+
+    
+      </div>
+  )
+  
+};
 export default OurProduct;
