@@ -1,6 +1,4 @@
-import Navbar from "../components/Navbar";
-
-
+import Navbar from '../components/Navbar'
 import Ourproduct from '../components/Ourproduct'
 
 import Rooms from '../components/Rooms'
@@ -8,21 +6,26 @@ import Furnitor from '../components/Furnitor'
 import Footer from '../components/Footer'
 
 
+
+
+
+      
+   
+
 export default function Home() {
   return (
     <div>
-    
-    <Navbar/>
+      {/* Navbar */}
+      <Navbar />
 
-      
-
-      {/* Product Section */}
+    {/* Product Section */}
       <Ourproduct/>
     
       <Rooms/>
       <Furnitor/>
-     <Footer/>
-      
+
+      <Footer/>
+   
     
       </div>
      ) }
