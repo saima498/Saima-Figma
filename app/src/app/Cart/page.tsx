@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Product } from "../../../types/products";
-import {getCartItems,removeFromCart,updateCartQuntity,} from "../action/action";
+import {getCartItems,removeFromCart,updateCartQuntity,} from '../action/actio'
 import { FaUserAlt } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa";
@@ -106,14 +106,10 @@ const CartPage = () => {
         <ul className="hidden md:flex gap-8 text-gray-500 text-sm font-medium">
           <li>
             <Link href="./" className="hover:text-gray-800">
-              Products
+              Product
             </Link>
           </li>
-          <li>
-            <Link href="./Blog" className="hover:text-gray-800">
-              Blog
-            </Link>
-          </li>
+        
           <li>
             <Link href="./Contact" className="hover:text-gray-800">
               Contact
@@ -212,6 +208,7 @@ const CartPage = () => {
           <p className="text-center text-gray-500">Your cart is empty.</p>
         )}
       </div>{" "}
+     
     </div>
   );
 };

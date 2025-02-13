@@ -82,14 +82,10 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
         </div>
 
         <ul className="hidden md:flex gap-8 text-gray-500 text-sm font-medium">
-          <Link href="./Products">
-            <li className="cursor-pointer hover:text-black">Products</li>
+          <Link href="./Product">
+            <li className="cursor-pointer hover:text-black">Product</li>
           </Link>
-          <li>
-            <Link href="./Blog" className="hover:text-gray-800">
-              Blog
-            </Link>
-          </li>
+          
           <li>
             <Link href="./Contact" className="hover:text-gray-800">
               Contact

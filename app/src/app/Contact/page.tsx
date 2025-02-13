@@ -8,7 +8,7 @@ import Link from "next/link";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaPhone } from "react-icons/fa6";
 import { FaClock } from "react-icons/fa6";
-
+import Footer from '..//../components/Footer'
 const Contact = () => {
     return (
       <div>
@@ -30,14 +30,10 @@ const Contact = () => {
           <ul className="hidden md:flex gap-8 text-gray-500 text-sm font-medium">
             <li>
               <Link href="/" className="hover:text-gray-800">
-                Shop
+               Product
               </Link>
             </li>
-            <li>
-              <Link href="./Blog" className="hover:text-gray-800">
-                Blog
-              </Link>
-            </li>
+            
             <li>
               <Link href="./Contact" className="hover:text-gray-800">
                 Contact
@@ -184,6 +180,10 @@ const Contact = () => {
            </div>
          </div>
          </div>
+          {/* Footer Section */}
+      <div className="relative mt-48">
+        <Footer />
+      </div>
          </div>
        
         );

@@ -110,9 +110,7 @@ const ProductCards: React.FC = () => {
             <Link href="/Product">
               <li className="cursor-pointer hover:text-black">Product</li>
             </Link>
-            <Link href="/Blog">
-              <li className="cursor-pointer hover:text-black">Blog</li>
-            </Link>
+           
             <Link href="/Contact">
               <li className="cursor-pointer hover:text-black">Contact</li>
             </Link>

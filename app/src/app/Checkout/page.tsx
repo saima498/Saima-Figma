@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { getCartItems } from "../action/action";
+import { getCartItems } from "../action/actio";
 import { Product } from "../../../types/products";
 import Link from "next/link";
 import Image from "next/image";
@@ -99,14 +99,10 @@ const Checkout = () => {
         <ul className="hidden md:flex gap-8 text-gray-500 text-sm font-medium">
           <li>
             <Link href="./" className="hover:text-gray-800">
-              Products
+              Product
             </Link>
           </li>
-          <li>
-            <Link href="./Blog" className="hover:text-gray-800">
-              Blog
-            </Link>
-          </li>
+          
           <li>
             <Link href="./Contact" className="hover:text-gray-800">
               Contact

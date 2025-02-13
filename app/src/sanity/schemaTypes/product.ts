@@ -64,7 +64,7 @@ export const product = defineType({
         {
             name:"Ourproduct",
             type:"boolean",
-            title:"Our products",
+            title:"Our product",
         },
     
         {
